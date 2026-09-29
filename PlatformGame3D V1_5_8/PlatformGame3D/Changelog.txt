@@ -1,0 +1,41 @@
+V1_0 Base version
+==================
+No notes, no changes
+==================
+
+V1_1 Buttons Buttons and more Buttons!
+======================================
+Added buttons to control anything using a switch on switch off interface
+
+Reworked rotating bars to inherit from a single rotating pin object for faster itteration and implementation of interface.
+Reworked Jump Pad into a single version to allow for faster itteration and implementation of interface.
+Added particles to the jump pad to indicate active state.
+Reworked crystal to implement interface and allow faster itteration.
+Removed Physics crystals for simplicity, to be re-added later.
+fixed cyrstals colliding with the player, players no longer bump into floating crystals.
+fixed players momentum upon respawning, players no longer keep any momentum from previous life when respawning.
+
+V1_2 Spikey balls!
+==================
+Added the spikey death ball
+Hooked up the spikey death ball to the button system, pressing the button reveals the spikey ball.
+Created a physics version of the spikey death ball.
+
+V1_5 Wobblys, Stripes and Spots
+================================
+Added the wobbly pillar as an obstacle.
+Added M_Stripey_H and M_Stripey_V to allows stripey materials
+Added M_Dotty to allow dotty materials.
+
+V1_5_1 Minior Fixes
+===================
+Renamed colour options in dotty material to sensible names
+Added crystals to wobblys forest part of the level.
+
+V1_5_7 Rolley Poley Pole
+Added the rolley polley pole, rotating pole players can fall off of.
+
+V1_5_8 Crystal Spin and Bob
+All crystals now spin and bob lazily within the level.
+
+
