@@ -9,7 +9,7 @@ ABP_TargetDummy::ABP_TargetDummy()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	UStaticMeshComponent* MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	RootComponent = MyStaticMesh;
 	
 	UE_LOG(LogTemp, Warning, TEXT("Target Dummy Constructed"));

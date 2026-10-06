@@ -14,6 +14,9 @@ class FPS_API ABP_TargetDummy : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ABP_TargetDummy();
+	
+	UPROPERTY(EditAnywhere, Category = "StaticMesh")
+	UStaticMeshComponent* MyStaticMesh;
 
 protected:
 	// Called when the game starts or when spawned
