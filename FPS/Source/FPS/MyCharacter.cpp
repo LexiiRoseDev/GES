@@ -3,6 +3,8 @@
 
 #include "MyCharacter.h"
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
@@ -16,6 +18,20 @@ void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	checkf(GEngine != nullptr, TEXT("GENGINE NOT FOUND!"));
+	
+	APlayerController* PlayerController = Cast<APlayerController>(Controller);
+	
+	if (PlayerController)
+	{
+		UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
+		if (Subsystem)
+		{
+			Subsystem->AddMappingContext(PlayerControlContext, 0);
+		}
+	}
+	
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("MyCharacter Online!"));
 }
 
 // Called every frame
@@ -28,7 +44,24 @@ void AMyCharacter::Tick(float DeltaTime)
 // Called to bind functionality to input
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent);
+	if (EnhancedInputComponent)
+	{
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMyCharacter::Move);
+	}
+}
 
+void AMyCharacter::Move(const FInputActionValue& Value)
+{
+	const FVector2D MovementValue = Value.Get<FVector2D>();
+	
+	if (Controller)
+	{
+		const FVector Right = GetActorRightVector();
+		AddMovementInput(Right, MovementValue.X);
+		
+		const FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, MovementValue.Y);
+	}
 }
 
